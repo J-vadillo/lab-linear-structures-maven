@@ -78,9 +78,13 @@ public class ArrayBasedQueue<T> implements Queue<T> {
     } // if empty
     // Grab and clear the element at the front of the queue
     T result = this.values[this.front];
-    this.values[this.front++] = null;
-    // We're removing an element, so decrement the size
+    for(int i = 1; i<this.size; i++){
+      this.values[i-1] = this.values[i];
+    }
     --this.size;
+    this.values[this.back()] = null;
+    // We're removing an element, so decrement the size
+
     // And we're done
     return result;
   } // get(T)
